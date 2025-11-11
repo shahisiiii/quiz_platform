@@ -49,18 +49,26 @@ Redis 7+
 quiz_platform/
 ├── apps/
 │   ├── users/
+│   |   ├── migrations/
+│   |   ├── __init__.py
 │   │   ├── models.py
+│   │   ├── apps.py
+│   │   ├── admin.py
 │   │   ├── serializers.py
 │   │   ├── views.py
 │   │   ├── urls.py
 │   │   └── permissions.py
 │   └── quizzes/
-│       ├── models.py
-│       ├── serializers.py
-│       ├── views.py
-│       ├── urls.py
-│       ├── tasks.py
-│       └── utils.py
+│   |   ├── migrations/
+│   |   ├── __init__.py
+│   │   ├── utils.py.py
+│   │   ├── apps.py
+│   |   ├── models.py
+│   |   ├── serializers.py
+│   |   ├── views.py
+│   |   ├── urls.py
+│   |   ├── tasks.py
+│   |   └── utils.py
 ├── quiz_platform/
 │   ├── __init__.py
 │   ├── settings.py
