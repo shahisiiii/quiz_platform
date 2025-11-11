@@ -185,6 +185,28 @@ The application will be available at http://localhost:8000
 baseurl
 ``` http://localhost:8000/api/v1 ``` 
 
+# API Docs URLs
+
+Once your server is running (python manage.py runserver), you can view:
+
+Swagger UI: 
+
+```http://127.0.0.1:8000/api/schema/```
+
+
+
+Redoc: 
+
+```http://127.0.0.1:8000/api/redoc/```
+
+
+
+Raw OpenAPI JSON:
+
+ ```http://127.0.0.1:8000/api/docs/```
+
+
+
 
 # Authentication
 
@@ -624,7 +646,7 @@ refresh_token: (will be set after login)
 
 In the login request, add this to the Tests tab:
 
-```json
+```javascript
 javascriptvar jsonData = pm.response.json();
 pm.environment.set("access_token", jsonData.tokens.access);
 pm.environment.set("refresh_token", jsonData.tokens.refresh);
