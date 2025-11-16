@@ -52,6 +52,17 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Email already exists.")
         return value.lower()
     
+    def validate_username(self, value):
+        value = value.strip().lower()
+
+        if '@' in value:
+            raise serializers.ValidationError("Username cannot contain '@'.")
+
+        if User.objects.filter(username=value).exists():
+            raise serializers.ValidationError("Username already exists.")
+
+        return value
+    
     def create(self, validated_data):
         """Create user with hashed password"""
         validated_data.pop('password2')
