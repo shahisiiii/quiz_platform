@@ -316,7 +316,22 @@ class SubmissionViewSet(viewsets.ModelViewSet):
             return Response({
                 'error': 'Quiz not found or is inactive'
             }, status=status.HTTP_404_NOT_FOUND)
-        
+            
+        question_ids = []
+
+        for answer_item in answers_data:
+            question_ids.append(answer_item["question_id"])
+
+        existing_answers = Answer.objects.filter(
+            submission__user=request.user,
+            question_id__in=question_ids
+        ).values_list('question_id', flat=True)
+
+        if existing_answers:
+            return Response({
+                'error': f'You have already submitted answers for these questions: {list(existing_answers)}'
+            }, status=status.HTTP_400_BAD_REQUEST)
+  
         # Validate quiz has questions
         is_valid, error_msg = validate_quiz_questions(quiz)
         if not is_valid:
